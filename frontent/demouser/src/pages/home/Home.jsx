@@ -9,7 +9,12 @@ const Home = () => {
     const getUsers = async () => {
         const response = await axios.get("http://localhost:8080/api/v1/user/list");
         console.log(response.data);
-        setUsers(response.data);
+        if (response.status == 200) {
+            setUsers(response.data);
+        }
+        if (response.status == 204) {
+            console.log("No user found");
+        }
     }
 
     useEffect(() => {
